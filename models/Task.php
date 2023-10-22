@@ -45,7 +45,7 @@ class Task extends \yii\db\ActiveRecord
            // ['end_time','date', 'timestampAttribute' => 'end_time'],
             [['name', 'assigned_person', 'file'], 'string', 'max' => 255],
             [['status'], 'string', 'max' => 100],
-            [['upload'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png'],
+            [['upload'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png'],
         ];
     }
     /*

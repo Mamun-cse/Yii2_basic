@@ -44,12 +44,13 @@ class TaskController extends Controller
             'pagination' => [
                 'pageSize' => 50
             ],
+            */
             'sort' => [
                 'defaultOrder' => [
                     'id' => SORT_DESC,
                 ]
             ],
-            */
+            
         ]);
 
         return $this->render('index', [
@@ -80,13 +81,16 @@ class TaskController extends Controller
         $model = new Task();
 
         if ($this->request->isPost) {
+
             if ($model->load($this->request->post())) {
+
                 if ($model->load(Yii::$app->request->post())) {
+
                     $model->upload = UploadedFile::getInstance($model, 'upload');
 
                     if ($model->validate()) {
                         if ($model->upload) {
-                            $filePath = '/home/mamun/sites/' . $model->upload->baseName . '.' . $model->upload->extension;
+                            $filePath = 'uploads/' . $model->upload->baseName . '.' . $model->upload->extension;
                             if ($model->upload->saveAs($filePath)) {
                                 $model->file = $filePath;
                             }
@@ -158,19 +162,6 @@ class TaskController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    /*
-    public function actionUpload()
-    {
-        $model = new Task();
-        if(Yii::$app_request->isPost){
-            $model->file = UploadedFile::getInstance($model, 'file');
-            if($model->upload()){
-                // file is uploaded successfully
-                return;
-            }
-        }
-        return $this->render('upload', ['model' => $model]);
-    }
-    */
+
 
 }

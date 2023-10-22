@@ -29,14 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+           // 'id',
             'name',
             'priority',
             'assigned_person',
             'start_time',
             'end_time',
             'status',
-            'file',
+            //'file',
+            [
+                'attribute'=>'file',
+                'label'=>'File',
+                'format'=>'html',
+                'value' => function($model){
+                return yii\bootstrap5\Html::img("../".$model->file,['width'=>'100']);
+
+                }
+            ],
         ],
     ]) ?>
 
